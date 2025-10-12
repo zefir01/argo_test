@@ -24,7 +24,7 @@ local e = import '../libs/env.libsonnet';
     '1.19.0',
     helm_params=[
       argo.var('installCRDs', 'true'),
-      argo.var('extraArgs', '--enable-gateway-api')
+      argo.var('extraArgs', '{--enable-gateway-api}')
     ],
     wave=10
   ),
