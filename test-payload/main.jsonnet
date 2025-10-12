@@ -11,11 +11,11 @@ local k8s = import '../libs/k8s.libsonnet';
         'echoserver',
         [k8s.deployment_container_port('http', 80, 'TCP')],
         k8s.deployment_container_http_probe('http'),
-        resources=k8s.deployment_container_resources('500m', '4Gi', '1', '8Gi'),
+        //resources=k8s.deployment_container_resources('500m', '4Gi', '1', '8Gi'),
       ),
     ],
     wave=20,
-    replicas=5
+    replicas=1
   ),
 
   k8s.service(
