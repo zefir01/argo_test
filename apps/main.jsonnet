@@ -16,18 +16,18 @@ local e = import '../libs/env.libsonnet';
     'apps/snapshots-crd',
   ),
 
-  argo.app_helm(
-    'cert-manager',
-    'cert-manager',
-    'https://charts.jetstack.io',
-    'cert-manager',
-    '1.19.0',
-    helm_params=[
-      argo.var('installCRDs', 'true'),
-      argo.var('extraArgs', '{--enable-gateway-api}')
-    ],
-    wave=10
-  ),
+//  argo.app_helm(
+//    'cert-manager',
+//    'cert-manager',
+//    'https://charts.jetstack.io',
+//    'cert-manager',
+//    '1.19.0',
+//    helm_params=[
+//      argo.var('installCRDs', 'true'),
+//      argo.var('extraArgs', '{--enable-gateway-api}')
+//    ],
+//    wave=10
+//  ),
 
   argo.app_helm(
     'metrics-server',
