@@ -42,7 +42,7 @@ local k8s = import '../libs/k8s.libsonnet';
       listeners: [
         {
           name: 'http',
-          hostname: 'echo.pstukalov-test.com',
+          hostname: '*.pstukalov-test.com',
           protocol: 'HTTP',
           port: 80,
           allowedRoutes: {
