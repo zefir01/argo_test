@@ -101,7 +101,9 @@ local argo = import '../libs/argo.libsonnet';
         solvers: [
           {
             dns01: {
-              route53: {},
+              route53: {
+                region: argo.config.region,
+              },
             },
           },
         ],
