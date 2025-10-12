@@ -16,7 +16,7 @@ local k8s = import '../libs/k8s.libsonnet';
     },
   },
 
-  gateway(name, issuer, certificates=null, namespace=null, gatewayClass='cilium', wave=null):: {
+  gateway(name, issuer, namespace=null, gatewayClass='cilium', wave=null):: {
     apiVersion: 'gateway.networking.k8s.io/v1',
     kind: 'Gateway',
     metadata: {
@@ -36,7 +36,7 @@ local k8s = import '../libs/k8s.libsonnet';
           'service.beta.kubernetes.io/aws-load-balancer-nlb-target-type': 'instance',
           'service.beta.kubernetes.io/aws-load-balancer-scheme': 'internet-facing',
           'service.beta.kubernetes.io/aws-load-balancer-proxy-protocol': '*',
-          'service.beta.kubernetes.io/aws-load-balancer-alpn-policy': 'HTTP2Preferred'
+          'service.beta.kubernetes.io/aws-load-balancer-alpn-policy': 'HTTP2Preferred',
         },
       },
       listeners: [
@@ -51,20 +51,26 @@ local k8s = import '../libs/k8s.libsonnet';
             },
           },
         },
-      ] + if certificates == null then [] else [{
-        name: 'https',
-        protocol: 'HTTPS',
-        port: 443,
-        allowedRoutes: {
-          namespaces: {
-            from: 'All',
+        {
+          name: 'https',
+          protocol: 'HTTPS',
+          port: 443,
+          allowedRoutes: {
+            namespaces: {
+              from: 'All',
+            },
+          },
+          tls: {
+            mode: 'Terminate',
+            certificateRefs: [
+              {
+                kind: 'Secret',
+                name: name + '-tls',
+              },
+            ],
           },
         },
-        tls: {
-          mode: 'Terminate',
-          certificateRefs: certificates,
-        },
-      }],
+      ],
     },
   },
 
