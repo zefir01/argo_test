@@ -53,7 +53,7 @@ local k8s = import '../libs/k8s.libsonnet';
         },
         {
           name: 'https',
-          //hostname: 'echo.pstukalov-test.com',
+          hostname: '*.pstukalov-test.com',
           protocol: 'HTTPS',
           port: 443,
           allowedRoutes: {
