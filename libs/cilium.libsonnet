@@ -114,6 +114,13 @@ local k8s = import '../libs/k8s.libsonnet';
           namespace: 'argo',
           sectionName: 'http',
         },
+        {
+          group: 'gateway.networking.k8s.io',
+          kind: 'Gateway',
+          name: gateway,
+          namespace: 'argo',
+          sectionName: 'https',
+        },
       ],
       hostnames: domains,
       rules: rules,
