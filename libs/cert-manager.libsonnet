@@ -100,17 +100,8 @@ local argo = import '../libs/argo.libsonnet';
         server: 'https://acme-v02.api.letsencrypt.org/directory',
         solvers: [
           {
-            http01: {
-              gatewayHTTPRoute: {
-                parentRefs: [
-                  {
-                    group: 'gateway.networking.k8s.io',
-                    kind: 'Gateway',
-                    name: gateway,
-                    namespace: gateway_ns,
-                  },
-                ],
-              },
+            dns01: {
+              route53: {},
             },
           },
         ],
