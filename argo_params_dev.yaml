@@ -4,7 +4,7 @@
 "argo_repo": "git@github.com:zefir01/argo_test.git"
 "cluster_endpoint": "https://441168F6718BDCCCAAAB383EC0E104B0.gr7.us-west-2.eks.amazonaws.com"
 "cluster_name": "main"
-"cluster_worker_role": "main-eks-auto-20251012182539343300000002"
+"cluster_worker_role": "main-eks-node-group-20251012184257637300000001"
 "domain": "pstukalov-test.com"
 "env_name": "dev"
 "github_artifacts_bucket_id": ""
