@@ -25,7 +25,7 @@ local k8s = import '../libs/k8s.libsonnet';
     wave=20
   ),
 
-  c.httpRoute('echoserver', ['echo.oncentrl-test.com'], [
+  c.httpRoute('echoserver', ['echo.pstukalov-test.com'], [
     c.rulePrefix('/', 'echoserver'),
   ]),
 ]
