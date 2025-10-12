@@ -12,6 +12,7 @@ local argo = import '../libs/argo.libsonnet';
       },
     },
     spec: {
+      sourceDestCheck: false,
       kubelet: {
         maxPods: 110,
         systemReserved: {
