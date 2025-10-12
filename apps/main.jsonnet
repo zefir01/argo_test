@@ -171,7 +171,7 @@ local e = import '../libs/env.libsonnet';
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
   c.httpRoute('hubble-ui', ['hubble.pstukalov-test.com'], [
     c.rulePrefix('/', 'hubble-ui'),
-  ]),
+  ], namespace='kube-system'),
 
   argo.app('test-payload', 'test-payload', 'test-payload', wave=30, istio=false),
 
