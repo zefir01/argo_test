@@ -21,9 +21,10 @@ local e = import '../libs/env.libsonnet';
     'cert-manager',
     'https://charts.jetstack.io',
     'cert-manager',
-    '1.13.2',
+    '1.19.0',
     helm_params=[
       argo.var('installCRDs', 'true'),
+      argo.var('extraArgs', '--enable-gateway-api')
     ],
     wave=10
   ),
