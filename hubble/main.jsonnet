@@ -5,8 +5,8 @@ local o = import '../libs/oauth-proxy.libsonnet';
 
 [
   k8s.secret('oauth-proxy', stringData={
-    client_id: 'Ov23lipmITFNbDOrFjuv',
-    client_secret: 'b1a76cf753c4a9cddb53650ad7d8297f01534c4d',
+    client_id: 'Ov23liw8vzFtx8ek4aiI',
+    client_secret: 'cd0875f9840ef8cc53ef9e9269924e7cdb6c3ce2',
     cookie_secret: 'AhgeePhee7sheeQu',
   }),
 
