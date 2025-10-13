@@ -158,6 +158,20 @@ local e = import '../libs/env.libsonnet';
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
   argo.app('hubble', 'hubble', 'hubble', wave=30),
 
+  argo.app_helm(
+    'argo-rollouts',
+    'argo-rollouts',
+    'https://argoproj.github.io/argo-helm',
+    'argo-rollouts',
+    '2.40.5',
+    values={
+      dashboard: {
+        enabled: true,
+      },
+    },
+    wave=10
+  ),
+
   argo.app('test-payload', 'test-payload', 'test-payload', wave=30, istio=false),
 
 ]
