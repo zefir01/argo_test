@@ -156,8 +156,8 @@ local e = import '../libs/env.libsonnet';
   argo.app_helm(
     'vertical-pod-autoscaler',
     'vertical-pod-autoscaler',
-    'https://cowboysysop.github.io/charts/',
-    'cowboysysop/vertical-pod-autoscaler',
+    'https://cowboysysop.github.io/charts/cowboysysop',
+    'vertical-pod-autoscaler',
     '2.40.5',
     wave=20,
   ),
