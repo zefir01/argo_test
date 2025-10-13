@@ -158,7 +158,7 @@ local e = import '../libs/env.libsonnet';
     'vertical-pod-autoscaler',
     'https://kubernetes.github.io/autoscaler',
     'vertical-pod-autoscaler',
-    'vertical-pod-autoscaler-1.5.1',
+    '1.5.1',
     wave=20,
   ),
 
