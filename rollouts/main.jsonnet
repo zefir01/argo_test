@@ -43,5 +43,5 @@ local o = import '../libs/oauth-proxy.libsonnet';
 
   c.httpRoute('rollouts', ['rollouts.pstukalov-test.com'], [
     c.rulePrefix('/', 'oauth'),
-  ], namespace='argo-rollouts', wave=30),
+  ], wave=30),
 ]
