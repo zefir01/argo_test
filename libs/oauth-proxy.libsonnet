@@ -59,12 +59,12 @@ local k8s = import 'k8s.libsonnet';
         k8s.deployment_container(
           'quay.io/oauth2-proxy/oauth2-proxy:v7.6.0',
           'oauth2-proxy',
-          [k8s.deployment_container_port('http', 80, 'TCP')],
+          [k8s.deployment_container_port('http', 4180, 'TCP')],
           k8s.deployment_container_http_probe('http', path='/ping'),
           k8s.deployment_container_http_probe('http', path='/ping'),
           args=[
             '--provider=github',
-            '--http-address=0.0.0.0:80',
+            '--http-address=0.0.0.0:4180',
             '--upstream=' + upstream,
             '--redirect-url=https://' + domain + '/oauth2/callback',
             '--email-domain=*',
