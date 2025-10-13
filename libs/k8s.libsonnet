@@ -211,7 +211,7 @@ local argo = import 'argo.libsonnet';
   },
   deployment_container_resources:: _deployment_container_resources,
 
-  local _deployment_container(image,
+  deployment_container(image,
                               name,
                               ports=null,
                               liveness_probe=null,
@@ -222,7 +222,7 @@ local argo = import 'argo.libsonnet';
                               args=null,
                               env=null,
                               volumeMounts=null,
-                              privileged=null) = {
+                              privileged=null):: {
     name: name,
     image: image,
     [if ports != null then 'ports']: ports,
@@ -238,7 +238,6 @@ local argo = import 'argo.libsonnet';
       privileged: privileged,
     },
   },
-  deployment_container:: _deployment_container,
 
   local _secret_env(name, secret, key) = {
     name: name,
@@ -259,7 +258,7 @@ local argo = import 'argo.libsonnet';
   },
   deployment_volume:: _deployment_volume,
 
-  local _deployment(
+  deployment(
     name,
     containers,
     labels={},
@@ -278,7 +277,7 @@ local argo = import 'argo.libsonnet';
     podsAnnotations=null,
     nodeSelector=null,
     affinity=null
-  ) = {
+  ):: {
     apiVersion: 'apps/v1',
     kind: 'Deployment',
     metadata: {
@@ -324,7 +323,6 @@ local argo = import 'argo.libsonnet';
       },
     },
   },
-  deployment:: _deployment,
 
   local _cluster_role(name, rules, labels=null, wave=null) = {
     apiVersion: 'rbac.authorization.k8s.io/v1',
@@ -340,7 +338,7 @@ local argo = import 'argo.libsonnet';
   },
   cluster_role:: _cluster_role,
 
-  local _secret(
+  secret(
     name,
     data=null,
     stringData=null,
@@ -348,7 +346,7 @@ local argo = import 'argo.libsonnet';
     wave=null,
     namespace=null,
     type='Opaque'
-  ) = {
+  ):: {
     apiVersion: 'v1',
     kind: 'Secret',
     metadata: {
@@ -363,7 +361,6 @@ local argo = import 'argo.libsonnet';
     [if data != null then 'data']: data,
     [if stringData != null then 'stringData']: stringData,
   },
-  secret:: _secret,
 
   local _ns = function(name, istio=false, wave=null) {
     apiVersion: 'v1',

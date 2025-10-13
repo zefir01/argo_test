@@ -156,9 +156,7 @@ local e = import '../libs/env.libsonnet';
   //c.gatewayClass(),
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
-  c.httpRoute('hubble-ui', ['hubble.pstukalov-test.com'], [
-    c.rulePrefix('/', 'hubble-ui'),
-  ], namespace='kube-system'),
+  argo.app('hubble', 'hubble', 'hubble', wave=30),
 
   argo.app('test-payload', 'test-payload', 'test-payload', wave=30, istio=false),
 
