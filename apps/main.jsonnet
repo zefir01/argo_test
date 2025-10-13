@@ -156,9 +156,9 @@ local e = import '../libs/env.libsonnet';
   argo.app_helm(
     'vertical-pod-autoscaler',
     'vertical-pod-autoscaler',
-    'oci://ghcr.io/cowboysysop/charts',
+    'https://kubernetes.github.io/autoscaler',
     'vertical-pod-autoscaler',
-    '2.40.5',
+    'vertical-pod-autoscaler-1.5.1',
     wave=20,
   ),
 
