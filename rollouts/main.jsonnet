@@ -29,7 +29,7 @@ local o = import '../libs/oauth-proxy.libsonnet';
     'zefir01',
     'hubble',
     'pstukalov-test.com',
-    'http://argo-rollouts-dashboard:3100',
+    'http://argo-rollouts-dashboard.argo-rollouts.svc.cluster.local:3100',
     'oauth-proxy',
     replicas=1
   ),
