@@ -55,33 +55,35 @@ local k8s = import 'k8s.libsonnet';
   github_pod(name, email, domain, upstream, secret, replicas=1, namespace=null)::
     k8s.deployment(
       name,
-      k8s.deployment_container(
-        'quay.io/oauth2-proxy/oauth2-proxy:v7.6.0',
-        'oauth2-proxy',
-        [k8s.deployment_container_port('http', 80, 'TCP')],
-        k8s.deployment_container_http_probe('http', path='/ping'),
-        k8s.deployment_container_http_probe('http', path='/ping'),
-        args=[
-          '--provider=github',
-          '--http-address=0.0.0.0:80',
-          '--upstream=' + upstream,
-          '--redirect-url=https://' + domain + '/oauth2/callback',
-          '--email-domain=*',
-          '--allowed-email-addresses=' + email,
-          '--cookie-secure=true',
-          '--cookie-samesite=lax',
-          '--cookie-domain=.' + domain,
-          '--pass-access-token=true',
-          '--set-xauthrequest=true',
-          '--skip-provider-button=true',
-        ],
-        env=[
-          k8s.secretVar('OAUTH2_PROXY_CLIENT_ID', secret, 'client_id'),
-          k8s.secretVar('OAUTH2_PROXY_CLIENT_SECRET', secret, 'client_secret'),
-          k8s.secretVar('OAUTH2_PROXY_COOKIE_SECRET', secret, 'cookie_secret'),
-        ],
-        resources=k8s.deployment_container_resources('10m', '128Mi', '300m', '256Mi'),
-      ),
+      [
+        k8s.deployment_container(
+          'quay.io/oauth2-proxy/oauth2-proxy:v7.6.0',
+          'oauth2-proxy',
+          [k8s.deployment_container_port('http', 80, 'TCP')],
+          k8s.deployment_container_http_probe('http', path='/ping'),
+          k8s.deployment_container_http_probe('http', path='/ping'),
+          args=[
+            '--provider=github',
+            '--http-address=0.0.0.0:80',
+            '--upstream=' + upstream,
+            '--redirect-url=https://' + domain + '/oauth2/callback',
+            '--email-domain=*',
+            '--allowed-email-addresses=' + email,
+            '--cookie-secure=true',
+            '--cookie-samesite=lax',
+            '--cookie-domain=.' + domain,
+            '--pass-access-token=true',
+            '--set-xauthrequest=true',
+            '--skip-provider-button=true',
+          ],
+          env=[
+            k8s.secretVar('OAUTH2_PROXY_CLIENT_ID', secret, 'client_id'),
+            k8s.secretVar('OAUTH2_PROXY_CLIENT_SECRET', secret, 'client_secret'),
+            k8s.secretVar('OAUTH2_PROXY_COOKIE_SECRET', secret, 'cookie_secret'),
+          ],
+          resources=k8s.deployment_container_resources('10m', '128Mi', '300m', '256Mi'),
+        ),
+      ],
       replicas=replicas
     ),
 }
