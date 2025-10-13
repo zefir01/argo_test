@@ -172,8 +172,8 @@ local e = import '../libs/env.libsonnet';
     wave=10
   ),
   c.httpRoute('rollouts', ['rollouts.pstukalov-test.com'], [
-    c.rulePrefix('/', 'argo-rollouts-dashboard'),
-  ], namespace='argo-rollouts'),
+    c.rulePrefix('/', 'argo-rollouts-dashboard', port=3100),
+  ], namespace='argo-rollouts', wave=30),
 
   argo.app('test-payload', 'test-payload', 'test-payload', wave=30, istio=false),
 
