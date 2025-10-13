@@ -157,23 +157,7 @@ local e = import '../libs/env.libsonnet';
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
   argo.app('hubble', 'hubble', 'hubble', wave=30),
-
-  argo.app_helm(
-    'argo-rollouts',
-    'argo-rollouts',
-    'https://argoproj.github.io/argo-helm',
-    'argo-rollouts',
-    '2.40.5',
-    valuesObject={
-      dashboard: {
-        enabled: true,
-      },
-    },
-    wave=10
-  ),
-  c.httpRoute('rollouts', ['rollouts.pstukalov-test.com'], [
-    c.rulePrefix('/', 'argo-rollouts-dashboard', port=3100),
-  ], namespace='argo-rollouts', wave=30),
+  argo.app('rollouts', 'rollouts', 'rollouts', wave=30),
 
   argo.app('test-payload', 'test-payload', 'test-payload', wave=30, istio=false),
 
