@@ -153,7 +153,15 @@ local e = import '../libs/env.libsonnet';
     wave=20,
   ),
 
-  //c.gatewayClass(),
+  argo.app_helm(
+    'vertical-pod-autoscaler',
+    'vertical-pod-autoscaler',
+    'https://cowboysysop.github.io/charts/',
+    'vertical-pod-autoscaler',
+    '2.3.12',
+    wave=20,
+  ),
+
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
   argo.app('hubble', 'hubble', 'hubble', wave=30),
