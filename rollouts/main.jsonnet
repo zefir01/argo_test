@@ -34,6 +34,13 @@ local o = import '../libs/oauth-proxy.libsonnet';
     replicas=1
   ),
 
+  k8s.service(
+    'oauth',
+    { app: 'oauth' },
+    [k8s.service_port('http', 80, 'http')],
+    wave=20
+  ),
+
   c.httpRoute('rollouts', ['rollouts.pstukalov-test.com'], [
     c.rulePrefix('/', 'oauth'),
   ], namespace='argo-rollouts', wave=30),
