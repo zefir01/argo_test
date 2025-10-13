@@ -154,11 +154,11 @@ local e = import '../libs/env.libsonnet';
   ),
 
   argo.app_helm(
-    'vertical-pod-autoscaler',
-    'vertical-pod-autoscaler',
-    'https://kubernetes.github.io/autoscaler',
-    'vertical-pod-autoscaler',
-    '1.5.1',
+    'vpa',
+    'vpa',
+    'https://charts.fairwinds.com/stable',
+    'vpa',
+    '4.9.0',
     wave=20,
   ),
 
