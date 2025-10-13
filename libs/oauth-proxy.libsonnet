@@ -52,7 +52,7 @@ local k8s = import 'k8s.libsonnet';
     ]
   ),
 
-  github_pod(name, email, domain, upstream, secret, replicas=1, namespace=null)::
+  github_pod(name, email, subdomain, domain, upstream, secret, replicas=1, namespace=null)::
     k8s.deployment(
       name,
       [
@@ -66,7 +66,7 @@ local k8s = import 'k8s.libsonnet';
             '--provider=github',
             '--http-address=0.0.0.0:4180',
             '--upstream=' + upstream,
-            '--redirect-url=https://' + domain + '/oauth2/callback',
+            '--redirect-url=https://' + subdomain + '.' + domain + '/oauth2/callback',
             '--email-domain=*',
             '--github-user=' + email,
             '--cookie-secure=true',

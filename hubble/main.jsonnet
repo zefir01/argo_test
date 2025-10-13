@@ -13,6 +13,7 @@ local o = import '../libs/oauth-proxy.libsonnet';
   o.github_pod(
     'oauth',
     'peter.stukalov01@gmail.com',
+    'hubble',
     'pstukalov-test.com',
     'http://hubble-ui.kube-system.svc.cluster.local:80',
     'oauth-proxy',
