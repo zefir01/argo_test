@@ -157,7 +157,7 @@ local e = import '../libs/env.libsonnet';
     'vertical-pod-autoscaler',
     'vertical-pod-autoscaler',
     'https://cowboysysop.github.io/charts/',
-    'vertical-pod-autoscaler',
+    'cowboysysop/vertical-pod-autoscaler',
     '2.40.5',
     wave=20,
   ),
