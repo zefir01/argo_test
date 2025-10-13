@@ -65,6 +65,7 @@ local k8s = import '../libs/k8s.libsonnet';
             mode: 'Terminate',
             certificateRefs: [
               {
+                group: '',
                 kind: 'Secret',
                 name: name + '-tls',
               },
