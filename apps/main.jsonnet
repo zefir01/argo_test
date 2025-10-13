@@ -164,7 +164,7 @@ local e = import '../libs/env.libsonnet';
     'https://argoproj.github.io/argo-helm',
     'argo-rollouts',
     '2.40.5',
-    values={
+    valuesObject={
       dashboard: {
         enabled: true,
       },
