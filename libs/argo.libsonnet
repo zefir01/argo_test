@@ -10,6 +10,13 @@ local env = std.parseYaml(importstr '../env.yaml')[terraform_config.env_name];
 
 local ignoreDifferencesDefault = [
   {
+      group: 'apiextensions.k8s.io',
+      kind: 'CustomResourceDefinition',
+      jsonPointers: [
+          '/spec/preserveUnknownFields'
+      ]
+  },
+  {
     group: 'datadoghq.com',
     kind: 'DatadogMonitor',
     jsonPointers: [
