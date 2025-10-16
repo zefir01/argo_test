@@ -2,8 +2,11 @@ local argo = import './argo.libsonnet';
 
 {
 
-  step(weight, templates, duration=null):: {
+  stepWeight(weight, duration=null):: {
     setWeight: weight,
+    pause: if duration == null then {} else { duration: duration },
+  },
+  stepAnalysis(templates, duration=null):: {
     [if std.length(templates)>0 then 'analysis']: {
       templates: [if std.isString(t) then { templateName: t } else t for t in templates],
     },
