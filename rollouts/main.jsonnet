@@ -17,6 +17,11 @@ local o = import '../libs/oauth-proxy.libsonnet';
     'argo-rollouts',
     '2.40.5',
     valuesObject={
+      serviceAccount: {
+        annotations: {
+          'annotations.eks.amazonaws.com/role-arn': argo.config.argo_rollouts_irsa,
+        },
+      },
       dashboard: {
         enabled: true,
       },
