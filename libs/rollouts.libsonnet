@@ -92,7 +92,7 @@ local argo = import './argo.libsonnet';
           provider: {
             prometheus: {
               address: argo.config.amp_url,
-              query: 'kube_pod_container_status_restarts_total{rollouts-pod-template-hash="{{args.latest-hash}}"}',
+              query: 'kube_pod_container_status_restarts_total{rollouts_pod_template_hash="{{args.latest-hash}}"}',
               authentication: {
                 sigv4: {
                   region: argo.config.region,
