@@ -168,5 +168,6 @@ local e = import '../libs/env.libsonnet';
   argo.app('rollouts', 'rollouts', 'rollouts', wave=30),
 
   argo.app('test-payload', 'test-payload', 'test-payload', wave=30, istio=false),
+  argo.app('rollouts-test', 'rollouts-test', 'rollouts-test', wave=30, istio=false),
 
 ]

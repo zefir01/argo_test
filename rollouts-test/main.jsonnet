@@ -1,0 +1,55 @@
+local argo = import '../libs/argo.libsonnet';
+local c = import '../libs/cilium.libsonnet';
+local k8s = import '../libs/k8s.libsonnet';
+local r = import '../libs/rollouts.libsonnet';
+
+
+local obj={
+  stableService: k8s.service(
+    'test-stable',
+    { app: 'test' },
+    [k8s.service_port('http', 80, 'http')],
+    wave=20
+  ),
+  canaryService: k8s.service(
+    'test-canary',
+    { app: 'test' },
+    [k8s.service_port('http', 80, 'http')],
+    wave=20
+  ),
+  httpRoute: c.httpRoute('test', ['test.pstukalov-test.com'], [
+    c.rulePrefix('/', '', backendRefs=[
+      {
+        group: '',
+        kind: 'Service',
+        name: self.stableService.metadata.name,
+        port: 80,
+      },
+      {
+        group: '',
+        kind: 'Service',
+        name: self.canaryService.metadata.name,
+        port: 80,
+      }
+    ]),
+  ]),
+
+  rollout: r.canary(
+    'test',
+    [
+      k8s.deployment_container(
+        'argoproj/rollouts-demo:blue',
+        'demo',
+        [k8s.deployment_container_port('http', 80, 'TCP')],
+        k8s.deployment_container_http_probe('http'),
+        //resources=k8s.deployment_container_resources('500m', '4Gi', '1', '8Gi'),
+      ),
+    ],
+    canaryService=self.canaryService.metadata.name,
+    stableService=self.stableService.metadata.name,
+    httpRoute={},
+    labels=self.stableService.spec.selector
+  ),
+};
+
+[obj[name] for name in std.objectFields(obj)]

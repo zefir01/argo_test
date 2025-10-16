@@ -1,6 +1,5 @@
 local argo = import '../libs/argo.libsonnet';
 local c = import '../libs/cilium.libsonnet';
-local istio = import '../libs/istio.libsonnet';
 local k8s = import '../libs/k8s.libsonnet';
 
 [

@@ -76,7 +76,15 @@ local k8s = import '../libs/k8s.libsonnet';
     },
   },
 
-  rulePrefix(prefix, service, port=80):: {
+  rulePrefix(prefix, service, port=80, backendRefs=[
+    {
+      group: '',
+      kind: 'Service',
+      name: service,
+      port: port,
+      weight: 1,
+    },
+  ]):: {
     matches: [
       {
         path: {
@@ -85,15 +93,7 @@ local k8s = import '../libs/k8s.libsonnet';
         },
       },
     ],
-    backendRefs: [
-      {
-        group: '',
-        kind: 'Service',
-        name: service,
-        port: port,
-        weight: 1,
-      },
-    ],
+    backendRefs: backendRefs,
   },
 
   httpRoute(name, domains, rules, gateway='main', namespace=null, wave=null):: {
