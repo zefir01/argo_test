@@ -1,7 +1,14 @@
 local argo = import './argo.libsonnet';
 
 {
-  canary(name, containers, canaryService, stableService, httpRoute, httpRouteNamespace=argo.config.app_name, replicas=1, labels={ app: name }, wave=null):: {
+
+step(weight, templates, duration=null)::{
+  setWeight: weight,
+  templates:[ if std.isString(t) then {templateName: t} else t for t in templates],
+  pause: if duration==null then {} else {duration: duration}
+},
+
+  canary(name, containers, canaryService, stableService, httpRoute, steps, httpRouteNamespace=argo.config.app_name, replicas=1, labels={ app: name }, wave=null):: {
     apiVersion: 'argoproj.io/v1alpha1',
     kind: 'Rollout',
     metadata: {
@@ -36,38 +43,7 @@ local argo = import './argo.libsonnet';
               },
             },
           },
-          steps: [
-            {
-              setWeight: 20,
-            },
-            {
-              pause: {},
-            },
-            {
-              setWeight: 40,
-            },
-            {
-              pause: {
-                duration: 10,
-              },
-            },
-            {
-              setWeight: 60,
-            },
-            {
-              pause: {
-                duration: 10,
-              },
-            },
-            {
-              setWeight: 80,
-            },
-            {
-              pause: {
-                duration: 10,
-              },
-            },
-          ],
+          steps: steps,
         },
       },
     },

@@ -22,17 +22,19 @@ local obj = {
         kind: 'Service',
         name: obj.stableService.metadata.name,
         port: 80,
-        weight: 1
+        weight: 1,
       },
       {
         group: '',
         kind: 'Service',
         name: obj.canaryService.metadata.name,
         port: 80,
-        weight: 1
+        weight: 1,
       },
     ]),
   ], wave=20, rollouts=true),
+
+  at: r.analisysTemplate(),
 
   rollout: r.canary(
     'test',
@@ -44,6 +46,10 @@ local obj = {
         k8s.deployment_container_http_probe('http'),
         //resources=k8s.deployment_container_resources('500m', '4Gi', '1', '8Gi'),
       ),
+    ],
+    steps=[
+      r.step(20, []),
+      r.step(30, ['success-rate']),
     ],
     canaryService=obj.canaryService.metadata.name,
     stableService=obj.stableService.metadata.name,
