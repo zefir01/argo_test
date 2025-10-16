@@ -49,6 +49,7 @@ local obj = {
     stableService=self.stableService.metadata.name,
     httpRoute={},
     labels=self.stableService.spec.selector,
+    replicas=2,
     wave=30
   ),
 };

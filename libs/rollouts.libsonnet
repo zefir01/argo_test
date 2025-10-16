@@ -12,7 +12,7 @@ local argo = import './argo.libsonnet';
     },
     spec: {
       replicas: replicas,
-      revisionHistoryLimit: 1,
+      revisionHistoryLimit: 10,
       selector: {
         matchLabels: labels,
       },
