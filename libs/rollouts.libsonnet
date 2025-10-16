@@ -95,9 +95,7 @@ local argo = import './argo.libsonnet';
               query: 'kube_pod_container_status_restarts_total{rollouts-pod-template-hash="{{args.latest-hash}}"}',
               authentication: {
                 sigv4: {
-                  region: '$REGION',
-                  profile: '$PROFILE',
-                  roleArn: '$ROLEARN',
+                  region: argo.config.region,
                 },
               },
             },
