@@ -6,11 +6,10 @@ local argo = import './argo.libsonnet';
     setWeight: weight,
     pause: if duration == null then {} else { duration: duration },
   },
-  stepAnalysis(templates, duration=null):: {
+  stepAnalysis(templates):: {
     [if std.length(templates)>0 then 'analysis']: {
       templates: [if std.isString(t) then { templateName: t } else t for t in templates],
     },
-    pause: if duration == null then {} else { duration: duration },
   },
 
   canary(name, containers, canaryService, stableService, httpRoute, steps, httpRouteNamespace=argo.config.app_name, replicas=1, labels={ app: name }, wave=null):: {
