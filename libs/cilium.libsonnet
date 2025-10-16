@@ -96,7 +96,7 @@ local k8s = import '../libs/k8s.libsonnet';
     backendRefs: backendRefs,
   },
 
-  httpRoute(name, domains, rules, gateway='main', namespace=null, wave=null):: {
+  httpRoute(name, domains, rules, gateway='main', namespace=null, wave=null, rollouts=false):: {
     apiVersion: 'gateway.networking.k8s.io/v1',
     kind: 'HTTPRoute',
     metadata: {
@@ -105,6 +105,7 @@ local k8s = import '../libs/k8s.libsonnet';
       [if wave != null then 'annotations']: {
         'argocd.argoproj.io/sync-wave': std.toString(wave),
       },
+      [if rollouts then 'rollouts']: 'true',
     },
     spec: {
       parentRefs: [

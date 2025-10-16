@@ -32,7 +32,7 @@ local obj = {
         weight: 1
       },
     ]),
-  ], wave=20),
+  ], wave=20, rollouts=true),
 
   rollout: r.canary(
     'test',

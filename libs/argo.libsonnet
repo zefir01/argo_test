@@ -24,6 +24,20 @@ local ignoreDifferencesDefault = [
     ],
   },
   {
+    group: 'v1',
+    kind: 'Service',
+    jqPathExpressions:[
+      '.spec.selector.rollouts-pod-template-hash'
+    ]
+  },
+  {
+    group: 'gateway.networking.k8s.io/v1',
+    kind: 'HTTPRoute',
+    jqPathExpressions:[
+      '.spec.rules[*].weight | select(.metadata.annotations."rollouts" == "true")'
+    ]
+  },
+  {
     kind: 'Pod',
     jqPathExpressions: ['.metadata.annotations.reloader["stakater.com/last-reloaded-from"]'],
   },
