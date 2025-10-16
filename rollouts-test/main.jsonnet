@@ -49,7 +49,7 @@ local obj = {
     ],
     steps=[
       r.stepWeight(20),
-      r.stepAnalysis(['success-rate'], duration='30s'),
+      r.stepAnalysis(['success-rate']),
     ],
     canaryService=obj.canaryService.metadata.name,
     stableService=obj.stableService.metadata.name,
