@@ -6,8 +6,22 @@ local argo = import './argo.libsonnet';
     setWeight: weight,
   },
   stepAnalysis(templates):: {
-    [if std.length(templates)>0 then 'analysis']: {
+    analysis: {
       templates: [if std.isString(t) then { templateName: t } else t for t in templates],
+      args: [
+        {
+          name: 'stable-hash',
+          valueFrom: {
+            podTemplateHashValue: 'Stable',
+          },
+        },
+        {
+          name: 'latest-hash',
+          valueFrom: {
+            podTemplateHashValue: 'Latest',
+          },
+        },
+      ],
     },
   },
   stepPause(duration=null):: {
@@ -77,7 +91,7 @@ local argo = import './argo.libsonnet';
           provider: {
             prometheus: {
               address: argo.config.amp_url,
-              query: 'sum(irate(\n  istio_requests_total{reporter="source",destination_service=~"{{args.service-name}}",response_code!~"5.*"}[5m]\n)) /\nsum(irate(\n  istio_requests_total{reporter="source",destination_service=~"{{args.service-name}}"}[5m]\n))\n',
+              query: 'kube_pod_container_status_restarts_total{rollouts-pod-template-hash="{{args.latest-hash}}"}',
               authentication: {
                 sigv4: {
                   region: '$REGION',
