@@ -34,7 +34,7 @@ local ignoreDifferencesDefault = [
     group: 'gateway.networking.k8s.io/v1',
     kind: 'HTTPRoute',
     jqPathExpressions:[
-      '.spec.rules[*].weight | select(.metadata.annotations."rollouts" == "true")'
+      '.spec.rules[].weight | select(.metadata.annotations."rollouts" == "true")'
     ]
   },
   {
