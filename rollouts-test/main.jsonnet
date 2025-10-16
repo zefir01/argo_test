@@ -40,7 +40,7 @@ local obj = {
       k8s.deployment_container(
         'argoproj/rollouts-demo:blue',
         'demo',
-        [k8s.deployment_container_port('http', 80, 'TCP')],
+        [k8s.deployment_container_port('http', 8080, 'TCP')],
         k8s.deployment_container_http_probe('http'),
         //resources=k8s.deployment_container_resources('500m', '4Gi', '1', '8Gi'),
       ),
