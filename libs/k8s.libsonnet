@@ -377,7 +377,7 @@ local argo = import 'argo.libsonnet';
   },
   ns:: _ns,
 
-  local _configMap = function(name, data, annotations={}, namespace=null, wave=null) {
+  configMap(name, data, annotations={}, namespace=null, wave=null):: {
     apiVersion: 'v1',
     kind: 'ConfigMap',
     metadata: {
@@ -389,7 +389,6 @@ local argo = import 'argo.libsonnet';
     },
     data: data,
   },
-  configMap:: _configMap,
 
   sa(name, namespace=null, annotations={}, irsa_arn=null, wave=null):: {
     apiVersion: 'v1',
