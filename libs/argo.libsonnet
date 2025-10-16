@@ -24,17 +24,17 @@ local ignoreDifferencesDefault = [
     ],
   },
   {
-    group: 'v1',
+    group: '',
     kind: 'Service',
     jqPathExpressions:[
       '.spec.selector["rollouts-pod-template-hash"]'
     ]
   },
   {
-    group: 'gateway.networking.k8s.io/v1',
+    group: 'gateway.networking.k8s.io',
     kind: 'HTTPRoute',
     jqPathExpressions:[
-      '.spec.rules[].weight | select(.metadata.annotations."rollouts" == "true")'
+      'select(.metadata.annotations.rollouts == "true") | .spec.rules[].backendRefs[].weight'
     ]
   },
   {
