@@ -86,7 +86,7 @@ local argo = import './argo.libsonnet';
         {
           name: 'success-rate',
           interval: '1m',
-          successCondition: 'result[0] == 0',
+          successCondition: 'len(result) == 0 or result[0] == 0',
           failureLimit: 3,
           count: 15,
           provider: {
