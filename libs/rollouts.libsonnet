@@ -79,14 +79,14 @@ local argo = import './argo.libsonnet';
     spec: {
       args: [
         {
-          name: 'service-name',
+          name: 'latest-hash',
         },
       ],
       metrics: [
         {
           name: 'success-rate',
           interval: '5m',
-          successCondition: 'result[0] >= 0.95',
+          successCondition: 'result == 0',
           failureLimit: 3,
           provider: {
             prometheus: {
