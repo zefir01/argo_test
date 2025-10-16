@@ -2,6 +2,7 @@
 "amp_url": "https://aps-workspaces.us-west-2.amazonaws.com/workspaces/ws-8fd79c7f-6161-4d93-b03b-5f3320937f03/"
 "argo_branch": "main"
 "argo_repo": "git@github.com:zefir01/argo_test.git"
+"argo_rollouts_irsa": "arn:aws:iam::072707626360:role/irsa-main-argo-rollouts-cj5po8ww"
 "cluster_endpoint": "https://441168F6718BDCCCAAAB383EC0E104B0.gr7.us-west-2.eks.amazonaws.com"
 "cluster_name": "main"
 "cluster_worker_role": "main-eks-node-group-20251012184257637300000001"
