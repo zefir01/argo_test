@@ -85,9 +85,10 @@ local argo = import './argo.libsonnet';
       metrics: [
         {
           name: 'success-rate',
-          interval: '5m',
-          successCondition: 'result == 0',
+          interval: '1m',
+          successCondition: 'result[0] == 0',
           failureLimit: 3,
+          count: 15,
           provider: {
             prometheus: {
               address: argo.config.amp_url,
