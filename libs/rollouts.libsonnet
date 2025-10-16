@@ -1,11 +1,14 @@
 local argo = import './argo.libsonnet';
 
 {
-  canary(name, containers, canaryService, stableService, httpRoute, httpRouteNamespace=argo.config.app_name, replicas=1, labels={app: name}):: {
+  canary(name, containers, canaryService, stableService, httpRoute, httpRouteNamespace=argo.config.app_name, replicas=1, labels={ app: name }, wave=null):: {
     apiVersion: 'argoproj.io/v1alpha1',
     kind: 'Rollout',
     metadata: {
       name: name,
+      [if wave != null then 'annotations']: {
+        'argocd.argoproj.io/sync-wave': std.toString(wave),
+      },
     },
     spec: {
       replicas: replicas,
@@ -68,7 +71,7 @@ local argo = import './argo.libsonnet';
         },
       },
     },
-    labels:: labels
+    labels:: labels,
   },
 
   analisysTemplate():: {

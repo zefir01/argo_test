@@ -4,18 +4,16 @@ local k8s = import '../libs/k8s.libsonnet';
 local r = import '../libs/rollouts.libsonnet';
 
 
-local obj={
+local obj = {
   stableService: k8s.service(
     'test-stable',
     { app: 'test' },
     [k8s.service_port('http', 80, 'http')],
-    wave=20
   ),
   canaryService: k8s.service(
     'test-canary',
     { app: 'test' },
     [k8s.service_port('http', 80, 'http')],
-    wave=20
   ),
   httpRoute: c.httpRoute('test', ['test.pstukalov-test.com'], [
     c.rulePrefix('/', '', backendRefs=[
@@ -30,9 +28,9 @@ local obj={
         kind: 'Service',
         name: obj.canaryService.metadata.name,
         port: 80,
-      }
+      },
     ]),
-  ]),
+  ], wave=20),
 
   rollout: r.canary(
     'test',
@@ -48,7 +46,8 @@ local obj={
     canaryService=self.canaryService.metadata.name,
     stableService=self.stableService.metadata.name,
     httpRoute={},
-    labels=self.stableService.spec.selector
+    labels=self.stableService.spec.selector,
+    wave=30
   ),
 };
 
