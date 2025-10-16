@@ -31,7 +31,7 @@ local argo = import './argo.libsonnet';
           trafficRouting: {
             plugins: {
               'argoproj-labs/gatewayAPI': {
-                httpRoute: 'httpRoute',
+                httpRoute: httpRoute,
                 namespace: httpRouteNamespace,
               },
             },
