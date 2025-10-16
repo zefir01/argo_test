@@ -22,13 +22,13 @@ local obj={
       {
         group: '',
         kind: 'Service',
-        name: self.stableService.metadata.name,
+        name: obj.stableService.metadata.name,
         port: 80,
       },
       {
         group: '',
         kind: 'Service',
-        name: self.canaryService.metadata.name,
+        name: obj.canaryService.metadata.name,
         port: 80,
       }
     ]),
