@@ -24,18 +24,18 @@ local o = import '../libs/oauth-proxy.libsonnet';
     wave=10
   ),
 
-  k8s.configMap('argo-rollouts-config', {
-    trafficRouterPlugins: std.manifestYamlDoc(
-      [
-        {
-          name: 'argoproj-labs/gatewayAPI',
-          location: 'https://github.com/argoproj-labs/rollouts-plugin-trafficrouter-gatewayapi/releases/download/v0.4.0/gatewayapi-plugin-linux-amd64',
-        },
-      ],
-      indent_array_in_object=false,
-      quote_keys=false
-    ),
-  }, namespace='argo-rollouts', wave=11),
+//  k8s.configMap('argo-rollouts-config', {
+//    trafficRouterPlugins: std.manifestYamlDoc(
+//      [
+//        {
+//          name: 'argoproj-labs/gatewayAPI',
+//          location: 'https://github.com/argoproj-labs/rollouts-plugin-trafficrouter-gatewayapi/releases/download/v0.4.0/gatewayapi-plugin-linux-amd64',
+//        },
+//      ],
+//      indent_array_in_object=false,
+//      quote_keys=false
+//    ),
+//  }, namespace='argo-rollouts', wave=11),
 
   o.github_pod(
     'oauth',
