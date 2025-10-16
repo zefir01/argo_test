@@ -27,7 +27,7 @@ local ignoreDifferencesDefault = [
     group: 'v1',
     kind: 'Service',
     jqPathExpressions:[
-      '.spec.selector.rollouts-pod-template-hash'
+      '.spec.selector["rollouts-pod-template-hash"]'
     ]
   },
   {
