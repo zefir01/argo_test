@@ -102,10 +102,10 @@ local k8s = import '../libs/k8s.libsonnet';
     metadata: {
       name: name,
       [if namespace != null then 'namespace']: namespace,
-      [if wave != null then 'annotations']: {
+      [if wave != null || rollouts then 'annotations']: {
         'argocd.argoproj.io/sync-wave': std.toString(wave),
+        [if rollouts then 'rollouts']: 'true',
       },
-      [if rollouts then 'rollouts']: 'true',
     },
     spec: {
       parentRefs: [
