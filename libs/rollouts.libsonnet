@@ -2,11 +2,13 @@ local argo = import './argo.libsonnet';
 
 {
 
-step(weight, templates, duration=null)::{
-  setWeight: weight,
-  templates:[ if std.isString(t) then {templateName: t} else t for t in templates],
-  pause: if duration==null then {} else {duration: duration}
-},
+  step(weight, templates, duration=null):: {
+    setWeight: weight,
+    [if std.length(templates)>0 then 'analysis']: {
+      templates: [if std.isString(t) then { templateName: t } else t for t in templates],
+    },
+    pause: if duration == null then {} else { duration: duration },
+  },
 
   canary(name, containers, canaryService, stableService, httpRoute, steps, httpRouteNamespace=argo.config.app_name, replicas=1, labels={ app: name }, wave=null):: {
     apiVersion: 'argoproj.io/v1alpha1',
