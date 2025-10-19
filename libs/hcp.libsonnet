@@ -109,8 +109,8 @@ local k8s = import '../libs/k8s.libsonnet';
         oAuthTokenID: 'ot-4uP6HKAQMqhZGJ5P',
         repository: 'zefir01/argo_test',
         speculativePlans: false,
-        enableFileTriggers: true,
-        triggerPrefixes:['tfc']
+        //enableFileTriggers: true,
+        //triggerPrefixes:['tfc']
       },
       agentPool: {
         name: 'main'
