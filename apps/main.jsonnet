@@ -162,6 +162,15 @@ local e = import '../libs/env.libsonnet';
     wave=20,
   ),
 
+    argo.app_helm(
+    'hcp',
+    'hcp',
+    'https://helm.releases.hashicorp.com',
+    'hcp-terraform-operator',
+    '2.9.2',
+    wave=20,
+  ),
+
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
   argo.app('hubble', 'hubble', 'hubble', wave=30),
