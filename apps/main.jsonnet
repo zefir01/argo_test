@@ -188,7 +188,7 @@ local e = import '../libs/env.libsonnet';
     },
     wave=25,
   ),
-  es.externalSecret('terraformrc','terraformrc', namespace='hcp', wave=26),
+  es.externalSecret('dev','dev', namespace='hcp', wave=26),
 
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
