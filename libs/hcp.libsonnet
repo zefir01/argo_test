@@ -40,7 +40,11 @@ local k8s = import '../libs/k8s.libsonnet';
       },
       autoscaling:{
         minReplicas: 0,
-        maxReplicas: 1
+        maxReplicas: 10,
+        cooldownPeriod:{
+          scaleUpSeconds: 1,
+          scaleDownSeconds: 30
+        }
       }
     },
   },
