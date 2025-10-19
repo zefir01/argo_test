@@ -1,11 +1,13 @@
 local argo = import '../libs/argo.libsonnet';
 local c = import '../libs/cilium.libsonnet';
-local k8s = import '../libs/k8s.libsonnet';
+local es = import '../libs/external_secrets.libsonnet';
 local hcp = import '../libs/hcp.libsonnet';
+local k8s = import '../libs/k8s.libsonnet';
 
 [
   k8s.deployment(
-    'echoserver', [
+    'echoserver',
+    [
       k8s.deployment_container(
         'ealen/echo-server:latest',
         'echoserver',
@@ -29,5 +31,6 @@ local hcp = import '../libs/hcp.libsonnet';
     c.rulePrefix('/', 'echoserver'),
   ]),
 
-  hcp.workspace('main', 'zefir01', 'main', 'dev', 'hcp_token')
+  es.externalSecret('dev', 'dev', namespace='hcp', wave=26),
+  hcp.workspace('main', 'zefir01', 'main', 'dev', 'hcp_token'),
 ]
