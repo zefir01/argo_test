@@ -69,6 +69,7 @@ local k8s = import '../libs/k8s.libsonnet';
         },
       },
       name: name,
+      deletionPolicy: 'soft'
     },
   },
 
