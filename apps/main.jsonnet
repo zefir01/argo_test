@@ -168,6 +168,13 @@ local e = import '../libs/env.libsonnet';
     'https://helm.releases.hashicorp.com',
     'hcp-terraform-operator',
     '2.9.2',
+    valuesObject={
+      controllers:{
+        agentPool:{
+          workers: 0
+        }
+      }
+    },
     wave=20,
   ),
 
