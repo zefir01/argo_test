@@ -78,8 +78,8 @@ local k8s = import '../libs/k8s.libsonnet';
     kind: 'Workspace',
     metadata: {
       name: name,
-      [if wave != null then 'annotations']: {
-        'argocd.argoproj.io/sync-wave': std.toString(wave),
+      annotations: {
+        [if wave != null then 'argocd.argoproj.io/sync-wave']: std.toString(wave),
         'workspace.app.terraform.io/run-new': 'true',
         'workspace.app.terraform.io/run-type': 'apply',
       },
