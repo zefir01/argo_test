@@ -8,9 +8,10 @@
     spec: {
       organization: organization,
       token: {
-        secretKeyRef: null,
-        name: secretName,
-        key: secretKey,
+        secretKeyRef: {
+          name: secretName,
+          key: secretKey,
+        }
       },
       name: name,
       agentTokens: [
