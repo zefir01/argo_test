@@ -96,6 +96,8 @@ local k8s = import '../libs/k8s.libsonnet';
       name: name,
       description: 'Kubernetes Operator Automated Workspace',
       applyMethod: 'auto',
+      applyRunTrigger: 'auto',
+      deletionPolicy: 'destroy',
       terraformVersion: '1.13.2',
       [if vars != null then 'terraformVariables']: vars,
       [if env != null then 'environmentVariables']: env,
