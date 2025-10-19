@@ -39,14 +39,6 @@ local ignoreDifferencesDefault = [
   {
     kind: 'Pod',
     jqPathExpressions: ['.metadata.annotations.reloader["stakater.com/last-reloaded-from"]'],
-  },
-  {
-    group: 'app.terraform.io',
-    kind: 'Workspace',
-    jqPathExpressions: [
-      '.metadata.annotations.reloader["workspace.app.terraform.io/run-new"]',
-      '.metadata.annotations.reloader["workspace.app.terraform.io/run-type"]'
-    ],
   }
 ]
 +
