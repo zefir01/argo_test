@@ -31,6 +31,6 @@ local k8s = import '../libs/k8s.libsonnet';
     c.rulePrefix('/', 'echoserver'),
   ]),
 
-  es.externalSecret('dev', 'dev', namespace='hcp', wave=26),
+  es.externalSecret('dev', 'dev'),
   hcp.workspace('main', 'zefir01', 'main', 'dev', 'hcp_token'),
 ]
