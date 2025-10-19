@@ -4,6 +4,7 @@ local k8s = import '../libs/k8s.libsonnet';
 local k = import '../libs/karpenter.libsonnet';
 local c =import '../libs/cilium.libsonnet';
 local cm = import '../libs/cert-manager.libsonnet';
+local es = import '../libs/external_secrets.libsonnet';
 
 
 local e = import '../libs/env.libsonnet';
@@ -170,6 +171,7 @@ local e = import '../libs/env.libsonnet';
     '0.20.3',
     wave=20,
   ),
+    es.clusterStore('main', wave=21),
 
     argo.app_helm(
     'hcp',
@@ -186,6 +188,7 @@ local e = import '../libs/env.libsonnet';
     },
     wave=25,
   ),
+  es.externalSecret('terraformrc','terraformrc', namespace='hcp', wave=26),
 
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),

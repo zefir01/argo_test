@@ -32,7 +32,7 @@ local argo = import 'argo.libsonnet';
     secretName,
     secretStoreRef={
       kind: 'ClusterSecretStore',
-      name: 'local',
+      name: 'main',
     },
     decodingStrategy='Auto',
     labels=null,
