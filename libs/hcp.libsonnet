@@ -110,7 +110,7 @@ local k8s = import '../libs/k8s.libsonnet';
         repository: 'zefir01/argo_test',
         speculativePlans: false,
         enableFileTriggers: true,
-        triggerPrefixes:['/tfc']
+        triggerPrefixes:['/tfc/**/*']
       },
       agentPool: {
         name: 'main'
