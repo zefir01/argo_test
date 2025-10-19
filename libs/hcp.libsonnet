@@ -22,12 +22,13 @@
       agentDeployment: {
         replicas: 1,
         spec: {
-        containers: [
-            {
-              name: 'tfc-agent',
-              image: 'hashicorp/tfc-agent:1.13.1',
-            },
-          ],
+          serviceAccountName: 'hcp-agent',
+          containers: [
+              {
+                name: 'tfc-agent',
+                image: 'hashicorp/tfc-agent:1.13.1',
+              },
+            ],
         }
       },
     },
