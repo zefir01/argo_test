@@ -1,3 +1,5 @@
+local k8s = import '../libs/k8s.libsonnet';
+
 {
   pool(name, organization, secretName, secretKey, namespace=null, wave=null):: {
     apiVersion: 'app.terraform.io/v1alpha2',
@@ -31,6 +33,7 @@
               {
                 name: 'tfc-agent',
                 image: 'hashicorp/tfc-agent:1.13.1',
+                resources: k8s.deployment_container_resources('500m', '500Mi', '1', '2Gi')
               },
             ],
         }
