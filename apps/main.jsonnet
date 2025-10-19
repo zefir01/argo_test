@@ -192,7 +192,7 @@ local e = import '../libs/env.libsonnet';
   es.externalSecret('dev','dev', namespace='hcp', wave=26),
   k8s.sa('hcp-agent', namespace='hcp', irsa_arn=argo.config.hcp_irsa, wave=27),
   hcp.pool('main', 'zefir01', 'dev', 'hcp_token', namespace='hcp', wave=27),
-  hcp.project('main', 'zefir01', 'dev', 'hcp_token'),
+  hcp.project('main', 'zefir01', 'dev', 'hcp_token', namespace='hcp', wave=27),
 
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
