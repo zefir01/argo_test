@@ -21,13 +21,14 @@
       ],
       agentDeployment: {
         replicas: 1,
-        spec: null,
+        spec: {
         containers: [
-          {
-            name: 'tfc-agent',
-            image: 'hashicorp/tfc-agent:1.13.1',
-          },
-        ],
+            {
+              name: 'tfc-agent',
+              image: 'hashicorp/tfc-agent:1.13.1',
+            },
+          ],
+        }
       },
     },
   },
