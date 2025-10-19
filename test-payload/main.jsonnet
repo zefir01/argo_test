@@ -1,6 +1,7 @@
 local argo = import '../libs/argo.libsonnet';
 local c = import '../libs/cilium.libsonnet';
 local k8s = import '../libs/k8s.libsonnet';
+local hcp = import '../libs/hcp.libsonnet';
 
 [
   k8s.deployment(
@@ -27,4 +28,6 @@ local k8s = import '../libs/k8s.libsonnet';
   c.httpRoute('echoserver', ['echo.pstukalov-test.com'], [
     c.rulePrefix('/', 'echoserver'),
   ]),
+
+  hcp.workspace('main', 'zefir01', 'main', 'dev', 'hcp_token')
 ]
