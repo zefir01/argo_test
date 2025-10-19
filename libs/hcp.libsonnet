@@ -104,7 +104,7 @@ local k8s = import '../libs/k8s.libsonnet';
       terraformVersion: '1.13.2',
       [if vars != null then 'terraformVariables']: vars,
       [if env != null then 'environmentVariables']: env,
-      executionMode: 'remote',
+      executionMode: 'agent',
       workingDirectory: 'tfc',
       versionControl: {
         branch: argo.config.argo_branch,
