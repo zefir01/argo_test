@@ -162,6 +162,15 @@ local e = import '../libs/env.libsonnet';
     wave=20,
   ),
 
+  argo.app_helm(
+    'external-secrets',
+    'kube-system',
+    'https://charts.external-secrets.io',
+    'external-secrets',
+    '0.20.3',
+    wave=20,
+  ),
+
     argo.app_helm(
     'hcp',
     'hcp',
@@ -175,7 +184,7 @@ local e = import '../libs/env.libsonnet';
         }
       }
     },
-    wave=20,
+    wave=25,
   ),
 
   c.gateway('main', 'cilium', wave=20),
