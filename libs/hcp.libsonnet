@@ -105,7 +105,8 @@ local k8s = import '../libs/k8s.libsonnet';
         branch: argo.config.argo_branch,
         oAuthTokenID: 'ot-4uP6HKAQMqhZGJ5P',
         repository: 'zefir01/argo_test',
-        speculativePlans: false
+        speculativePlans: false,
+        enableFileTriggers: true
       },
       agentPool: {
         name: 'main'
