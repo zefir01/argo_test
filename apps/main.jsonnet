@@ -5,6 +5,7 @@ local k = import '../libs/karpenter.libsonnet';
 local c =import '../libs/cilium.libsonnet';
 local cm = import '../libs/cert-manager.libsonnet';
 local es = import '../libs/external_secrets.libsonnet';
+local hcp = import '../libs/hcp.libsonnet';
 
 
 local e = import '../libs/env.libsonnet';
@@ -189,6 +190,7 @@ local e = import '../libs/env.libsonnet';
     wave=25,
   ),
   es.externalSecret('dev','dev', namespace='hcp', wave=26),
+  hcp.pool('main', 'dev', 'hcp_token'),
 
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),
