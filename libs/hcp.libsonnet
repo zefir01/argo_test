@@ -106,6 +106,9 @@ local k8s = import '../libs/k8s.libsonnet';
         oAuthTokenID: 'ot-vNmfM2R3SnRq2ud3',
         repository: 'zefir01/argo_test',
       },
+      agentPool: {
+        name: 'main'
+      }
     },
   },
 }
