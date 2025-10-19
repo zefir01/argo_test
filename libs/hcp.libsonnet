@@ -103,14 +103,14 @@ local k8s = import '../libs/k8s.libsonnet';
       [if vars != null then 'terraformVariables']: vars,
       [if env != null then 'environmentVariables']: env,
       executionMode: 'agent',
-      workingDirectory: '/tfc',
+      workingDirectory: 'tfc',
       versionControl: {
         branch: argo.config.argo_branch,
         oAuthTokenID: 'ot-4uP6HKAQMqhZGJ5P',
         repository: 'zefir01/argo_test',
         speculativePlans: false,
         enableFileTriggers: true,
-        triggerPrefixes:['/tfc/**/*']
+        triggerPrefixes:['tfc']
       },
       agentPool: {
         name: 'main'
