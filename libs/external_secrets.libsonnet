@@ -2,7 +2,7 @@ local argo = import 'argo.libsonnet';
 
 {
   clusterStore(name, saName='external-secrets-store', wave=null):: {
-    apiVersion: 'external-secrets.io/v1beta1',
+    apiVersion: 'external-secrets.io/v1',
     kind: 'ClusterSecretStore',
     metadata: {
       name: name,
@@ -39,7 +39,7 @@ local argo = import 'argo.libsonnet';
     namespace=null,
     wave=null
   ):: {
-    apiVersion: 'external-secrets.io/v1beta1',
+    apiVersion: 'external-secrets.io/v1',
     kind: 'ExternalSecret',
     metadata: {
       name: name,
