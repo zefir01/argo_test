@@ -69,7 +69,7 @@ local k8s = import '../libs/k8s.libsonnet';
         },
       },
       name: name,
-      deletionPolicy: 'soft'
+      deletionPolicy: 'soft',
     },
   },
 
@@ -80,6 +80,8 @@ local k8s = import '../libs/k8s.libsonnet';
       name: name,
       [if wave != null then 'annotations']: {
         'argocd.argoproj.io/sync-wave': std.toString(wave),
+        'workspace.app.terraform.io/run-new': 'true',
+        'workspace.app.terraform.io/run-type': 'apply',
       },
       [if namespace != null then 'namespace']: namespace,
     },
@@ -114,7 +116,7 @@ local k8s = import '../libs/k8s.libsonnet';
       },
       //agentPool: {
       //  name: 'main'
-     // }
+      // }
     },
   },
 }

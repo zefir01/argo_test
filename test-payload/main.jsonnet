@@ -32,5 +32,5 @@ local k8s = import '../libs/k8s.libsonnet';
   ]),
 
   es.externalSecret('dev', 'dev'),
-  hcp.workspace('main', 'zefir01', 'main', 'dev', 'hcp_token'),
+  hcp.workspace('main', 'zefir01', 'main', 'dev', 'hcp_token', wave=1),
 ]
