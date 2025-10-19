@@ -10,6 +10,7 @@
 "env_name": "dev"
 "github_artifacts_bucket_id": ""
 "github_runners_irsa_arn": ""
+"hcp_irsa": "arn:aws:iam::072707626360:role/irsa-main-hcp-7kh9atix"
 "nat_ip1": "16.144.179.167"
 "nat_ip2": "44.226.187.82"
 "oidc_arn": "arn:aws:iam::072707626360:oidc-provider/oidc.eks.us-west-2.amazonaws.com/id/441168F6718BDCCCAAAB383EC0E104B0"
