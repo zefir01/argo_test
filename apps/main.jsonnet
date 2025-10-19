@@ -190,7 +190,7 @@ local e = import '../libs/env.libsonnet';
     wave=25,
   ),
   es.externalSecret('dev','dev', namespace='hcp', wave=26),
-  hcp.pool('main', 'zefir01', 'dev', 'hcp_token'),
+  hcp.pool('main', 'zefir01', 'dev', 'hcp_token', namespace='hcp', wave=27),
 
   c.gateway('main', 'cilium', wave=20),
   cm.letsEncryptIssuerCilium('cilium', 'pstukalov@oncetrl.com','main', 'argo' , wave=20),

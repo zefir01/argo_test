@@ -1,9 +1,13 @@
 {
-  pool(name, organization, secretName, secretKey):: {
+  pool(name, organization, secretName, secretKey, namespace=null, wave=null):: {
     apiVersion: 'app.terraform.io/v1alpha2',
     kind: 'AgentPool',
     metadata: {
       name: name,
+      [if wave != null then 'annotations']: {
+        'argocd.argoproj.io/sync-wave': std.toString(wave),
+      },
+      [if namespace != null then 'namespace']: namespace,
     },
     spec: {
       organization: organization,
