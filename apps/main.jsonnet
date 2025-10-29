@@ -203,9 +203,9 @@ local e = import '../libs/env.libsonnet';
   argo.app('rollouts-test', 'rollouts-test', 'rollouts-test', wave=30, istio=false),
 
   argo.app(
-    'demo',
-    'demo',
-    'demo',
+    'demo-base',
+    'demo-base',
+    'demo-base',
   ),
 
 ]
