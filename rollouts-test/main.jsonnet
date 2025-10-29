@@ -15,7 +15,7 @@ local obj = {
     { app: 'test' },
     [k8s.service_port('http', 80, 'http')],
   ),
-  httpRoute: c.httpRoute('test', ['test.pstukalov-test.com'], [
+  httpRoute: c.httpRoute('test', ['test.'+argo.config.domain], [
     c.rulePrefix('/', '', backendRefs=[
       {
         group: '',
