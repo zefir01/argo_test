@@ -1,5 +1,6 @@
 local cm = import '../libs/cert-manager.libsonnet';
 local k8s = import '../libs/k8s.libsonnet';
+local argo = import '../libs/argo.libsonnet';
 
 {
   gatewayClass(name='cilium', wave=null):: {
@@ -42,7 +43,7 @@ local k8s = import '../libs/k8s.libsonnet';
       listeners: [
         {
           name: 'http',
-          hostname: '*.pstukalov-test.com',
+          hostname: '*.'+argo.config.env.domain,
           protocol: 'HTTP',
           port: 80,
           allowedRoutes: {
@@ -53,7 +54,7 @@ local k8s = import '../libs/k8s.libsonnet';
         },
         {
           name: 'https',
-          hostname: '*.pstukalov-test.com',
+          hostname: '*.'+argo.config.env.domain,
           protocol: 'HTTPS',
           port: 443,
           allowedRoutes: {
