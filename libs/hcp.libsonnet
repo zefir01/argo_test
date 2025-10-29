@@ -2,7 +2,7 @@ local argo = import '../libs/argo.libsonnet';
 local k8s = import '../libs/k8s.libsonnet';
 
 {
-  pool(name, organization, secretName, secretKey, namespace=null, wave=null):: {
+  pool(name=argo.config.env_name, organization=argo.config.organization, secretName=argo.config.env_name, secretKey='hcp_token', namespace='hcp', wave=null):: {
     apiVersion: 'app.terraform.io/v1alpha2',
     kind: 'AgentPool',
     metadata: {
@@ -50,7 +50,7 @@ local k8s = import '../libs/k8s.libsonnet';
     },
   },
 
-  project(name, organization, secretName, secretKey, namespace=null, wave=null):: {
+  project(secretName=argo.config.env_name, secretKey='hcp_token', name=argo.config.env_name, organization=argo.config.organization, namespace='hcp', wave=null):: {
     apiVersion: 'app.terraform.io/v1alpha2',
     kind: 'Project',
     metadata: {
@@ -73,7 +73,7 @@ local k8s = import '../libs/k8s.libsonnet';
     },
   },
 
-  workspace(name, organization, project, secretName, secretKey, vars=null, env=null, namespace=null, wave=null):: {
+  workspace(name, prefix='tfc', secretName=argo.config.env_name, secretKey='hcp_token', project=argo.config.env_name, organization=argo.config.organization, vars=null, env=null, namespace=null, wave=null):: {
     apiVersion: 'app.terraform.io/v1alpha2',
     kind: 'Workspace',
     metadata: {
@@ -105,17 +105,17 @@ local k8s = import '../libs/k8s.libsonnet';
       [if vars != null then 'terraformVariables']: vars,
       [if env != null then 'environmentVariables']: env,
       executionMode: 'agent',
-      workingDirectory: 'tfc',
+      workingDirectory: prefix,
       versionControl: {
         branch: argo.config.argo_branch,
         oAuthTokenID: 'ot-4uP6HKAQMqhZGJ5P',
-        repository: 'zefir01/argo_test',
+        repository: argo.config.organization+'/argo_test',
         speculativePlans: false,
         enableFileTriggers: true,
-        triggerPrefixes: ['tfc'],
+        triggerPrefixes: [prefix],
       },
       agentPool: {
-        name: 'main',
+        name: argo.config.env_name,
       },
     },
   },

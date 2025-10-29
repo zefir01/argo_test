@@ -12,9 +12,9 @@ local o = import '../libs/oauth-proxy.libsonnet';
 
   o.github_pod(
     'oauth',
-    'zefir01',
+    argo.config.env.hubble_access,
     'hubble',
-    'pstukalov-test.com',
+    'pstukalov-dev.com',
     'http://hubble-ui.kube-system.svc.cluster.local:80',
     'oauth-proxy',
     replicas=1
