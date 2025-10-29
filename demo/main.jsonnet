@@ -2,6 +2,7 @@ local argo = import '../libs/argo.libsonnet';
 local istio = import '../libs/istio.libsonnet';
 local k8s = import '../libs/k8s.libsonnet';
 local s = import '../libs/secrets.libsonnet';
+local c = import '../libs/cilium.libsonnet';
 
 local instance = argo.config.env.demo.instances[argo.config.instance_name];
 local image = argo.revisions['demo-app'][instance.revision];
