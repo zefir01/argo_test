@@ -27,7 +27,7 @@ local o = import '../libs/oauth-proxy.libsonnet';
     wave=20
   ),
 
-  c.httpRoute('echoserver', ['hubble.pstukalov-test.com'], [
+  c.httpRoute('echoserver', ['hubble.'+argo.config.domain], [
     c.rulePrefix('/', 'oauth'),
   ]),
 ]
