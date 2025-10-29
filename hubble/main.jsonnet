@@ -14,7 +14,7 @@ local o = import '../libs/oauth-proxy.libsonnet';
     'oauth',
     argo.config.env.hubble_access,
     'hubble',
-    'pstukalov-dev.com',
+    argo.config.domain,
     'http://hubble-ui.kube-system.svc.cluster.local:80',
     'oauth-proxy',
     replicas=1
