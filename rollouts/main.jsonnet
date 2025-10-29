@@ -39,9 +39,9 @@ local o = import '../libs/oauth-proxy.libsonnet';
 
   o.github_pod(
     'oauth',
-    'zefir01',
+    argo.config.env.hubble_access,
     'hubble',
-    'pstukalov-test.com',
+    argo.config.domain,
     'http://argo-rollouts-dashboard.argo-rollouts.svc.cluster.local:3100',
     'oauth-proxy',
     replicas=1
