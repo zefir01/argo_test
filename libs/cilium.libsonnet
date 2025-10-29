@@ -43,7 +43,7 @@ local argo = import '../libs/argo.libsonnet';
       listeners: [
         {
           name: 'http',
-          hostname: '*.'+argo.config.env.domain,
+          hostname: '*.'+argo.config.domain,
           protocol: 'HTTP',
           port: 80,
           allowedRoutes: {
@@ -54,7 +54,7 @@ local argo = import '../libs/argo.libsonnet';
         },
         {
           name: 'https',
-          hostname: '*.'+argo.config.env.domain,
+          hostname: '*.'+argo.config.domain,
           protocol: 'HTTPS',
           port: 443,
           allowedRoutes: {
