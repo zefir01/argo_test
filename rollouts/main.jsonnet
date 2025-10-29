@@ -54,7 +54,7 @@ local o = import '../libs/oauth-proxy.libsonnet';
     wave=20
   ),
 
-  c.httpRoute('rollouts', ['rollouts.pstukalov-test.com'], [
+  c.httpRoute('rollouts', ['rollouts.'+argo.config.domain], [
     c.rulePrefix('/', 'oauth'),
   ], wave=30),
 ]
