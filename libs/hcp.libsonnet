@@ -23,7 +23,7 @@ local k8s = import '../libs/k8s.libsonnet';
       name: name,
       agentTokens: [
         {
-          name: 'agent-pool-dev-token',
+          name: 'agent-pool-'+argo.config.env_name+'-token',
         },
       ],
       agentDeployment: {
@@ -96,7 +96,7 @@ local k8s = import '../libs/k8s.libsonnet';
           key: secretKey,
         },
       },
-      name: name,
+      name: argo.config.env_name+'-'+name,
       description: 'Kubernetes Operator Automated Workspace',
       applyMethod: 'auto',
       applyRunTrigger: 'auto',
