@@ -79,7 +79,7 @@ local k8s = import 'k8s.libsonnet';
           env=[
             k8s.secretVar('OAUTH2_PROXY_CLIENT_ID', secret, 'client_id'),
             k8s.secretVar('OAUTH2_PROXY_CLIENT_SECRET', secret, 'client_secret'),
-            k8s.secretVar('OAUTH2_PROXY_COOKIE_SECRET', secret, 'cookie_secret'),
+            k8s.var('OAUTH2_PROXY_COOKIE_SECRET', 'AhgeePhee7sheeQu'),
           ],
           resources=k8s.deployment_container_resources('10m', '128Mi', '300m', '256Mi'),
         ),
