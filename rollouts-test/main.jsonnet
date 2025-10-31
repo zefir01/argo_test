@@ -48,6 +48,7 @@ local obj = {
       ),
     ],
     steps=[
+      r.stepWeight(10),
       r.stepPause(),
       r.stepAnalysis(['success-rate']),
     ],
