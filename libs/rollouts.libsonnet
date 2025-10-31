@@ -88,7 +88,7 @@ local argo = import './argo.libsonnet';
           interval: '1m',
           successCondition: 'len(result) == 0 or result[0] == 0',
           failureLimit: 3,
-          count: 15,
+          count: 5,
           provider: {
             prometheus: {
               address: argo.config.amp_url,
