@@ -2,6 +2,7 @@ local argo = import '../libs/argo.libsonnet';
 local c = import '../libs/cilium.libsonnet';
 local k8s = import '../libs/k8s.libsonnet';
 local o = import '../libs/oauth-proxy.libsonnet';
+local es = import '../libs/external_secrets.libsonnet';
 
 [
   es.externalSecret('github', 'rollouts-github'),
