@@ -4,11 +4,7 @@ local k8s = import '../libs/k8s.libsonnet';
 local o = import '../libs/oauth-proxy.libsonnet';
 
 [
-  k8s.secret('oauth-proxy', stringData={
-    client_id: 'Ov23liw8vzFtx8ek4aiI',
-    client_secret: 'cd0875f9840ef8cc53ef9e9269924e7cdb6c3ce2',
-    cookie_secret: 'AhgeePhee7sheeQu',
-  }),
+  es.externalSecret('github', 'rollouts-github'),
 
   argo.app_helm(
     'argo-rollouts',
@@ -43,7 +39,7 @@ local o = import '../libs/oauth-proxy.libsonnet';
     'hubble',
     argo.config.domain,
     'http://argo-rollouts-dashboard.argo-rollouts.svc.cluster.local:3100',
-    'oauth-proxy',
+    'github',
     replicas=1
   ),
 
