@@ -40,7 +40,7 @@ local obj = {
     'test',
     [
       k8s.deployment_container(
-        'argoproj/rollouts-demo:blue',
+        'argoproj/rollouts-demo:'+argo.config.env.rollouts.revision,
         'demo',
         [k8s.deployment_container_port('http', 8080, 'TCP')],
         k8s.deployment_container_http_probe('http'),
