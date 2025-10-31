@@ -189,7 +189,7 @@ local e = import '../libs/env.libsonnet';
     },
     wave=25,
   ),
-  es.externalSecret('dev','dev', namespace='hcp', wave=26),
+  es.externalSecret(argo.config.env_name, argo.config.env_name, namespace='hcp', wave=26),
   k8s.sa('hcp-agent', namespace='hcp', irsa_arn=argo.config.hcp_irsa, wave=27),
   hcp.pool(wave=27),
   hcp.project(wave=27),
