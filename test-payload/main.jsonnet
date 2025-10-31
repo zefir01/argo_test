@@ -31,6 +31,6 @@ local k8s = import '../libs/k8s.libsonnet';
     c.rulePrefix('/', 'echoserver'),
   ]),
 
-  es.externalSecret(argo.config.anv_name, argo.config.anv_name),
+  es.externalSecret(argo.config.env_name, argo.config.env_name),
   hcp.workspace('main', wave=1),
 ]
