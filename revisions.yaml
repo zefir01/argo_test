@@ -1,0 +1,2 @@
+demo-app:
+  main: 109719059341.dkr.ecr.us-west-2.amazonaws.com/zefir01-demo-app:2
