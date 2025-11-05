@@ -1,6 +1,6 @@
+local argo = import '../libs/argo.libsonnet';
 local cm = import '../libs/cert-manager.libsonnet';
 local k8s = import '../libs/k8s.libsonnet';
-local argo = import '../libs/argo.libsonnet';
 
 {
   gatewayClass(name='cilium', wave=null):: {
@@ -43,7 +43,7 @@ local argo = import '../libs/argo.libsonnet';
       listeners: [
         {
           name: 'http',
-          hostname: '*.'+argo.config.domain,
+          hostname: '*.' + argo.config.domain,
           protocol: 'HTTP',
           port: 80,
           allowedRoutes: {
@@ -54,7 +54,7 @@ local argo = import '../libs/argo.libsonnet';
         },
         {
           name: 'https',
-          hostname: '*.'+argo.config.domain,
+          hostname: '*.' + argo.config.domain,
           protocol: 'HTTPS',
           port: 443,
           allowedRoutes: {
@@ -127,6 +127,64 @@ local argo = import '../libs/argo.libsonnet';
       ],
       hostnames: domains,
       rules: rules,
+    },
+  },
+
+  policy_http_log(name, labels, ports=[80], namespace=null, wave=null,):: {
+    apiVersion: 'cilium.io/v2',
+    kind: 'CiliumNetworkPolicy',
+    metadata: {
+      name: name,
+      [if namespace != null then 'namespace']: namespace,
+      [if wave != null then 'annotations']: {
+        'argocd.argoproj.io/sync-wave': std.toString(wave),
+      },
+    },
+    spec: {
+      endpointSelector: {},
+      ingress: [
+        {
+          fromEntities: ['all'],
+          toPorts: [
+            {
+              ports: [
+                {
+                  port: std.toString(port),
+                  protocol: 'TCP',
+                }
+                for port in ports
+              ],
+              rules: {
+                http: [{
+                  method: 'GET',
+                  path: '^/ok$',
+                }],
+              },
+            },
+          ],
+        },
+      ],
+      egress: [
+        {
+          toPorts: [
+            {
+              ports: [
+                {
+                  port: std.toString(port),
+                  protocol: 'TCP',
+                }
+                for port in ports
+              ],
+              rules: {
+                http: [
+                  {},
+                ],
+              },
+            },
+          ],
+        },
+        { toEntities: ['all'] },
+      ],
     },
   },
 

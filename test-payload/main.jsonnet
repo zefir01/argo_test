@@ -33,4 +33,6 @@ local k8s = import '../libs/k8s.libsonnet';
 
   es.externalSecret(argo.config.env_name, argo.config.env_name),
   hcp.workspace('main', wave=1),
+
+  c.policy_http_log('log', { app: 'echoserver' })
 ]
