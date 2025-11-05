@@ -143,13 +143,8 @@ local k8s = import '../libs/k8s.libsonnet';
     spec: {
       endpointSelector: {},
       ingress: [
-        { fromEntities: ['all'] },
         {
-          fromEndpoints: [
-            {
-              matchLabels: labels,
-            },
-          ],
+          fromEntities: ['all'],
           toPorts: [
             {
               ports: [
