@@ -163,6 +163,30 @@ local k8s = import '../libs/k8s.libsonnet';
           ],
         },
       ],
+      ingressDeny: [
+        {
+          fromEntities: ['all'],
+          toPorts: [
+            {
+              ports: [
+                {
+                  port: std.toString(port),
+                  protocol: 'TCP',
+                }
+                for port in ports
+              ],
+              rules: {
+                http: [
+                  {
+                    method: 'HTTP',
+                    path: '^/deny(/.*)?$',
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
       egress: [
         {
           toPorts: [
