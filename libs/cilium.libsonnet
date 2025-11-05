@@ -143,10 +143,11 @@ local k8s = import '../libs/k8s.libsonnet';
     spec: {
       endpointSelector: {},
       ingress: [
+        { fromEntities: ['all'] },
         {
           fromEndpoints: [
             {
-              matchLabels: labels
+              matchLabels: labels,
             },
           ],
           toPorts: [
@@ -155,7 +156,8 @@ local k8s = import '../libs/k8s.libsonnet';
                 {
                   port: std.toString(port),
                   protocol: 'TCP',
-                } for port in ports
+                }
+                for port in ports
               ],
               rules: {
                 http: [
@@ -174,7 +176,8 @@ local k8s = import '../libs/k8s.libsonnet';
                 {
                   port: std.toString(port),
                   protocol: 'TCP',
-                } for port in ports
+                }
+                for port in ports
               ],
               rules: {
                 http: [
@@ -184,6 +187,7 @@ local k8s = import '../libs/k8s.libsonnet';
             },
           ],
         },
+        { toEntities: ['all'] },
       ],
     },
   },
