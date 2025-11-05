@@ -175,6 +175,9 @@ local k8s = import '../libs/k8s.libsonnet';
                 }
                 for port in ports
               ],
+              rules:{
+                http: [{}]
+              }
             },
           ],
         },
