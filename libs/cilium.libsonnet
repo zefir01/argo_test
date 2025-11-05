@@ -153,7 +153,7 @@ local k8s = import '../libs/k8s.libsonnet';
             {
               ports: [
                 {
-                  port: port,
+                  port: std.toString(port),
                   protocol: 'TCP',
                 } for port in ports
               ],
@@ -172,7 +172,7 @@ local k8s = import '../libs/k8s.libsonnet';
             {
               ports: [
                 {
-                  port: port,
+                  port: std.toString(port),
                   protocol: 'TCP',
                 } for port in ports
               ],
