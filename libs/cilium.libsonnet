@@ -163,7 +163,7 @@ local k8s = import '../libs/k8s.libsonnet';
 //          ],
 //        },
 //      ],
-      ingressDeny: [
+      ingress: [
         {
           fromEntities: ['all'],
           toPorts: [
